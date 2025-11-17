@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: hellodocker
 spec:
-  replicas: 1 #OR your desired number of replicas
+  replicas: 3 #OR your desired number of replicas
   selector:
     matchLabels:
       app: hellodocker
@@ -15,8 +15,12 @@ spec:
       containers:
         - name: hellodocker
           image: pritamworld/hellodocker:latest #Replace with your image <dockerusername>/hellodocker:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
+          env:
+            - name: NAME
+              value: "Pritesh from minikube"
           readinessProbe:
             httpGet:
               path: /
