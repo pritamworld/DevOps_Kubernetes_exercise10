@@ -44,7 +44,7 @@ jobs:
           FILE=k8s/hellodocker-deploy.yaml
           OLD_IMAGE=${{ env.IMAGE_NAME }}:latest"
           NEW_IMAGE=${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          sed -i "s|$OLD_IMAGE|$NEW_IMAGE|g" "$FILE"
+          sed -i "s/$OLD_IMAGE/$NEW_IMAGE/g" "$FILE"
           echo "Updated $FILE with image $NEW_IMAGE"
 
       - name: Commit and push changes
